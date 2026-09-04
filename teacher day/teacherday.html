@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Teacher's Day</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            text-align: center;
+        }
+
+        .box {
+            width: 400px;
+            max-width: 90%;
+            background-color: white;
+            margin: 80px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px gray;
+        }
+
+        h1 {
+            color: #1565c0;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            font-size: 17px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #1565c0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0d47a1;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #1565c0;
+            margin-bottom: 15px;
+        }
+
+        .shayari {
+            background-color: #fff8e1;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .teacher-day {
+            color: #e65100;
+        }
+
+        /*developer code statr*/
+        #developer{
+            width: 100%;
+            height: 50px;
+            background-color: #323232;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ccc;
+            
+        }
+
+        #developer p{
+            color: white;
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+
+        #developer a{
+            font-family: sans-serif;
+            font-size: 20px;
+            text-decoration: none;
+            color: yellow;
+            text-shadow: 0 0 5px orange,
+            0 0 10px red,
+            0 0 20px darkred;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- Name Page -->
+
+    <div class="box" id="name_page">
+
+        <h1>🌹 Welcome 🌹</h1>
+
+        <p>अपना नाम बताइए / Enter Your Name ?😊</p>
+
+        <input type="text" id="name" placeholder="Enter Your Name (ex:- Sagar Varma)" >
+
+        <br>
+
+        <button onclick="save_name()">
+            Next ➡️
+        </button>
+
+    </div>
+
+    <div id="song">
+<audio id="bg_song" loop>
+    <source src="bg_music.mpeg" type="audio/mpeg">
+</audio>
+    </div>
+
+
+    <!-- Photo Page -->
+
+    <div class="box" id="photo_page" style="display: none;">
+
+        <h2>📸 Upload Your Photo</h2>
+
+        <p>अपनी एक अच्छी फोटो Select कीजिए 😊</p>
+
+        <input type="file" id="photo" accept="image/*">
+
+        <br>
+
+        <button onclick="save_photo()">
+            Next ➡️
+        </button>
+
+    </div>
+
+
+
+    <!-- Role Page -->
+
+    <div class="box" id="role_page" style="display: none;">
+
+        <h2>🤔 Who Are You?</h2>
+
+        <p>आप Teacher हैं या Student?</p>
+
+        <button onclick="select_role('Teacher')">
+            👨‍🏫 Teacher
+        </button>
+
+        <button onclick="select_role('Student')">
+            🎓 Student
+        </button>
+
+    </div>
+
+
+
+    <!-- Final Page -->
+
+    <div class="box" id="final_page" style="display: none;">
+
+        <img id="show_photo">
+
+        <h2 id="show_name"></h2>
+
+        <h1 class="teacher-day">
+            🌹 Happy Teacher's Day 🌹
+        </h1>
+
+        <p id="show_role"></p>
+
+        <div class="shayari">
+
+            <h3>✨ For Our Dear Teacher ✨</h3>
+
+            <b>
+                गुरु का ज्ञान जीवन की पहचान है,
+            </b>
+
+            <br><br>
+
+            अंधकार भरे जीवन में,
+
+            <br>
+
+            गुरु ही सबसे बड़ा प्रकाश है। 🌟
+
+            <br><br>
+
+            <b>
+                🌹 Happy Teacher's Day 🌹
+            </b>
+
+        </div>
+        
+        <div id="developer">
+           <p> Created With <a href="https://sagarvarma123.github.io/sagar-varma-portfolio/" target="_blank">Sagar Varma</a></p>
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+    /* Starting me Name Page hide */
+
+    document.getElementById("name_page").style.display = "none";
+    alert("Please wait! 😊\nPress the Next button to play the music and continue... 🎵");
+
+
+    /* 2 second baad show */
+
+    setTimeout(function() {
+
+        document.getElementById("name_page").style.display = "block";
+
+    }, 2000);
+
+
+
+    /* Name Save */
+
+    function save_name() {
+
+        document.getElementById("bg_song").play();
+
+        var name = document.getElementById("name").value;
+
+        if (name == "") {
+
+            alert("Please Enter Your Name");
+
+        }
+
+        else {
+
+            localStorage.setItem("name", name);
+
+            document.getElementById("name_page").style.display = "none";
+
+            document.getElementById("photo_page").style.display = "block";
+
+        }
+
+    }
+
+
+
+    /* Photo Save */
+
+    function save_photo() {
+
+        var photo = document.getElementById("photo").files[0];
+
+        if (photo == undefined) {
+
+            alert("Please Select Your Photo");
+
+            return;
+        }
+
+        var reader = new FileReader();
+
+        reader.onload = function() {
+
+            localStorage.setItem("photo", reader.result);
+
+            document.getElementById("photo_page").style.display = "none";
+
+            document.getElementById("role_page").style.display = "block";
+
+        };
+
+        reader.readAsDataURL(photo);
+
+    }
+
+
+
+    /* Role Save */
+
+    function select_role(role) {
+
+        sessionStorage.setItem("role", role);
+
+        document.getElementById("role_page").style.display = "none";
+
+        document.getElementById("final_page").style.display = "block";
+
+        var name = localStorage.getItem("name");
+
+        var photo = localStorage.getItem("photo");
+
+        document.getElementById("show_name").innerHTML =
+            "Hello, " + name + " 👋";
+
+        document.getElementById("show_photo").src = photo;
+
+        document.getElementById("show_role").innerHTML =
+            "You are a " + role + " ❤️";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
+
